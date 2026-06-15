@@ -8,7 +8,7 @@ export function SiteHeader({
 }: {
   email?: string | null;
   isAdmin: boolean;
-  active?: "dashboard" | "admin";
+  active?: "dashboard" | "admin" | "account";
 }) {
   return (
     <header className="border-b border-slate-200 bg-white">
@@ -26,6 +26,9 @@ export function SiteHeader({
                 Admin
               </NavLink>
             )}
+            <NavLink href="/account" current={active === "account"}>
+              Account
+            </NavLink>
           </nav>
         </div>
         <div className="flex items-center gap-3">

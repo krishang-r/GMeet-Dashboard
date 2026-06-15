@@ -9,12 +9,27 @@ shared with them, and click **Join meeting** to open Meet in a new tab. An
 in-app admin panel lets you manage users, groups, meeting links, and who can
 see what.
 
+> **Want your own?** Click **Use this template** (or fork/clone) on GitHub,
+> then deploy:
+>
+> [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkrishang-r%2FGMeet-Dashboard&env=DATABASE_URL,AUTH_SECRET,NEXTAUTH_URL,ADMIN_EMAILS,NEXT_PUBLIC_GOOGLE_ENABLED&envDescription=See%20.env.example%20for%20what%20each%20value%20means)
+>
+> Vercel will ask for the environment variables below as you deploy. You'll
+> still need a (free) Neon database — see step 1.
+
 ## Features
 
 - **Login portal** — Google Sign-In **and** email/password.
 - **Access control** — meetings are assigned to individual users or to groups;
   users only see what's assigned to them.
 - **Admin panel** (`/admin`) — manage users, groups, meet links and assignments.
+  - **Edit a meet in place** — update the link/title/time each time a recurring
+    meeting gets a new link, without losing its assignments.
+  - **Password management** — admins can set/reset any user's password.
+- **Optional schedule** — give a meet a date/time (or leave blank for instant /
+  recurring meets); it shows on the card.
+- **Account page** (`/account`) — users change their own password (Google-only
+  users can add one to enable email login).
 - **Role-based** — `ADMIN` users get the admin panel; everyone else gets their
   dashboard.
 
