@@ -9,6 +9,14 @@ shared with them, and click **Join meeting** to open Meet in a new tab. An
 in-app admin panel lets you manage users, groups, meeting links, and who can
 see what.
 
+> **Want your own?** Click **Use this template** (or fork/clone) on GitHub,
+> then deploy:
+>
+> [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkrishang-r%2FGMeet-Dashboard&env=DATABASE_URL,AUTH_SECRET,NEXTAUTH_URL,ADMIN_EMAILS,NEXT_PUBLIC_GOOGLE_ENABLED&envDescription=See%20.env.example%20for%20what%20each%20value%20means)
+>
+> Vercel will ask for the environment variables below as you deploy. You'll
+> still need a (free) Neon database — see step 1.
+
 ## Features
 
 - **Login portal** — Google Sign-In **and** email/password.
