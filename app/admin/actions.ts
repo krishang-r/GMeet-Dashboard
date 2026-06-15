@@ -69,6 +69,25 @@ export async function setUserRole(formData: FormData) {
   revalidatePath("/admin/users");
 }
 
+export async function setUserPassword(
+  _prev: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const password = String(formData.get("password") ?? "");
+  if (!id) return { error: "Missing user id." };
+  if (password.length < 6) {
+    return { error: "Password must be at least 6 characters." };
+  }
+  await prisma.user.update({
+    where: { id },
+    data: { passwordHash: await bcrypt.hash(password, 10) },
+  });
+  revalidatePath("/admin/users");
+  return { success: "Password updated." };
+}
+
 export async function deleteUser(formData: FormData) {
   const session = await requireAdmin();
   const id = String(formData.get("id"));
@@ -136,6 +155,15 @@ const meetSchema = z.object({
   url: z.string().url("Enter a valid meeting URL."),
 });
 
+/** Parses a datetime-local form value into a Date, or null when empty.
+ *  Returns the string "invalid" when a non-empty value can't be parsed. */
+function parseScheduledAt(value: FormDataEntryValue | null): Date | null | "invalid" {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+  const date = new Date(raw);
+  return isNaN(date.getTime()) ? "invalid" : date;
+}
+
 export async function createMeet(
   _prev: ActionState,
   formData: FormData
@@ -151,6 +179,9 @@ export async function createMeet(
     return { error: parsed.error.issues[0]?.message ?? "Invalid input." };
   }
 
+  const scheduledAt = parseScheduledAt(formData.get("scheduledAt"));
+  if (scheduledAt === "invalid") return { error: "Invalid date/time." };
+
   const userIds = formData.getAll("userIds").map(String).filter(Boolean);
   const groupIds = formData.getAll("groupIds").map(String).filter(Boolean);
 
@@ -159,6 +190,7 @@ export async function createMeet(
       title: parsed.data.title,
       description: parsed.data.description || null,
       url: parsed.data.url,
+      scheduledAt,
       assignments: {
         create: [
           ...userIds.map((userId) => ({ userId })),
@@ -170,6 +202,41 @@ export async function createMeet(
 
   revalidatePath("/admin/meets");
   return { success: "Meet created and assigned." };
+}
+
+export async function updateMeet(
+  _prev: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  await requireAdmin();
+
+  const id = String(formData.get("id") ?? "");
+  if (!id) return { error: "Missing meet id." };
+
+  const parsed = meetSchema.safeParse({
+    title: formData.get("title"),
+    description: formData.get("description"),
+    url: formData.get("url"),
+  });
+  if (!parsed.success) {
+    return { error: parsed.error.issues[0]?.message ?? "Invalid input." };
+  }
+
+  const scheduledAt = parseScheduledAt(formData.get("scheduledAt"));
+  if (scheduledAt === "invalid") return { error: "Invalid date/time." };
+
+  await prisma.meet.update({
+    where: { id },
+    data: {
+      title: parsed.data.title,
+      description: parsed.data.description || null,
+      url: parsed.data.url,
+      scheduledAt,
+    },
+  });
+
+  revalidatePath("/admin/meets");
+  return { success: "Meet updated." };
 }
 
 export async function deleteMeet(formData: FormData) {

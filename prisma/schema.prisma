@@ -49,11 +49,12 @@ model GroupMember {
 }
 
 model Meet {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   title       String
   description String?
   url         String
-  createdAt   DateTime @default(now())
+  scheduledAt DateTime? // optional; null = instant/recurring meet with no set time
+  createdAt   DateTime  @default(now())
 
   assignments MeetAssignment[]
 }

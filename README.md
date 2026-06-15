@@ -15,6 +15,13 @@ see what.
 - **Access control** — meetings are assigned to individual users or to groups;
   users only see what's assigned to them.
 - **Admin panel** (`/admin`) — manage users, groups, meet links and assignments.
+  - **Edit a meet in place** — update the link/title/time each time a recurring
+    meeting gets a new link, without losing its assignments.
+  - **Password management** — admins can set/reset any user's password.
+- **Optional schedule** — give a meet a date/time (or leave blank for instant /
+  recurring meets); it shows on the card.
+- **Account page** (`/account`) — users change their own password (Google-only
+  users can add one to enable email login).
 - **Role-based** — `ADMIN` users get the admin panel; everyone else gets their
   dashboard.
 

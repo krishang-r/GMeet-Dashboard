@@ -1,11 +1,15 @@
+import { formatSchedule } from "@/lib/format";
+
 type Meet = {
   id: string;
   title: string;
   description: string | null;
   url: string;
+  scheduledAt?: Date | null;
 };
 
 export function MeetCard({ meet }: { meet: Meet }) {
+  const when = formatSchedule(meet.scheduledAt);
   return (
     <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
       <div className="mb-4 flex items-start gap-3">
@@ -16,6 +20,12 @@ export function MeetCard({ meet }: { meet: Meet }) {
           <h3 className="truncate text-base font-semibold text-slate-900">
             {meet.title}
           </h3>
+          {when && (
+            <p className="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-brand">
+              <ClockIcon />
+              {when}
+            </p>
+          )}
           {meet.description && (
             <p className="mt-0.5 line-clamp-2 text-sm text-slate-500">
               {meet.description}
@@ -46,6 +56,21 @@ function MeetIcon() {
         d="M15 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3.5l4 3.5V7l-4 3.5Z"
         stroke="currentColor"
         strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+      <path
+        d="M12 7v5l3 2"
+        stroke="currentColor"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

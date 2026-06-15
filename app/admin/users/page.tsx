@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth-helpers";
 import { CreateUserForm } from "@/components/admin/CreateUserForm";
+import { SetPasswordForm } from "@/components/admin/SetPasswordForm";
 import { deleteUser, setUserRole } from "@/app/admin/actions";
 
 export default async function UsersPage() {
@@ -34,6 +35,7 @@ export default async function UsersPage() {
               <th className="px-4 py-3">Login</th>
               <th className="px-4 py-3">Groups</th>
               <th className="px-4 py-3">Role</th>
+              <th className="px-4 py-3">Password</th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -75,6 +77,9 @@ export default async function UsersPage() {
                         </button>
                       )}
                     </form>
+                  </td>
+                  <td className="px-4 py-3">
+                    <SetPasswordForm userId={u.id} />
                   </td>
                   <td className="px-4 py-3 text-right">
                     {isSelf ? (
