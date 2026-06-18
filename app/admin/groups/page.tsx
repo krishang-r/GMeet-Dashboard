@@ -20,14 +20,16 @@ export default async function GroupsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-900">Groups</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          Groups
+        </h1>
+        <p className="mt-1 text-sm text-muted">
           Bundle users so you can assign a meeting to many people at once.
         </p>
       </div>
 
-      <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h2 className="mb-4 text-base font-semibold text-slate-900">
+      <section className="rounded-2xl border border-line bg-surface p-6 shadow-card">
+        <h2 className="mb-4 text-base font-semibold text-foreground">
           Add a group
         </h2>
         <CreateGroupForm />
@@ -35,7 +37,7 @@ export default async function GroupsPage() {
 
       <div className="space-y-4">
         {groups.length === 0 && (
-          <p className="text-sm text-slate-500">No groups yet.</p>
+          <p className="text-sm text-muted">No groups yet.</p>
         )}
         {groups.map((g) => {
           const memberIds = new Set(g.members.map((m) => m.userId));
@@ -43,22 +45,22 @@ export default async function GroupsPage() {
           return (
             <section
               key={g.id}
-              className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200"
+              className="rounded-2xl border border-line bg-surface p-6 shadow-card"
             >
               <div className="mb-4 flex items-start justify-between">
                 <div>
-                  <h3 className="text-base font-semibold text-slate-900">
+                  <h3 className="text-base font-semibold text-foreground">
                     {g.name}
                   </h3>
                   {g.description && (
-                    <p className="text-sm text-slate-500">{g.description}</p>
+                    <p className="text-sm text-muted">{g.description}</p>
                   )}
                 </div>
                 <form action={deleteGroup}>
                   <input type="hidden" name="id" value={g.id} />
                   <button
                     type="submit"
-                    className="text-xs font-medium text-red-600 hover:underline"
+                    className="text-xs font-medium text-danger hover:underline"
                   >
                     Delete group
                   </button>
@@ -67,12 +69,12 @@ export default async function GroupsPage() {
 
               <div className="mb-4 flex flex-wrap gap-2">
                 {g.members.length === 0 && (
-                  <span className="text-sm text-slate-400">No members.</span>
+                  <span className="text-sm text-faint">No members.</span>
                 )}
                 {g.members.map((m) => (
                   <span
                     key={m.id}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-elevated px-3 py-1 text-sm text-foreground"
                   >
                     {m.user.name ?? m.user.email}
                     <form action={removeGroupMember} className="inline">
@@ -80,7 +82,7 @@ export default async function GroupsPage() {
                       <input type="hidden" name="userId" value={m.userId} />
                       <button
                         type="submit"
-                        className="text-slate-400 hover:text-red-600"
+                        className="text-faint transition hover:text-danger"
                         aria-label="Remove member"
                       >
                         ×
@@ -97,7 +99,7 @@ export default async function GroupsPage() {
                     name="userId"
                     defaultValue=""
                     required
-                    className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    className="field max-w-xs"
                   >
                     <option value="" disabled>
                       Add member…
@@ -110,7 +112,7 @@ export default async function GroupsPage() {
                   </select>
                   <button
                     type="submit"
-                    className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+                    className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-brand-fg shadow-sm transition hover:bg-brand-dark"
                   >
                     Add
                   </button>

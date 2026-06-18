@@ -18,8 +18,10 @@ export default async function AdminOverview() {
 
   return (
     <div>
-      <h1 className="mb-1 text-2xl font-semibold text-slate-900">Overview</h1>
-      <p className="mb-6 text-sm text-slate-500">
+      <h1 className="mb-1 text-2xl font-semibold tracking-tight text-foreground">
+        Overview
+      </h1>
+      <p className="mb-6 text-sm text-muted">
         Manage who can access which meetings.
       </p>
 
@@ -28,19 +30,19 @@ export default async function AdminOverview() {
           <Link
             key={s.label}
             href={s.href}
-            className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md"
+            className="rounded-2xl border border-line bg-surface p-5 shadow-card transition duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-card-hover"
           >
-            <div className="text-3xl font-semibold text-slate-900">
+            <div className="text-3xl font-semibold tracking-tight text-foreground">
               {s.value}
             </div>
-            <div className="mt-1 text-sm text-slate-500">{s.label}</div>
+            <div className="mt-1 text-sm text-muted">{s.label}</div>
           </Link>
         ))}
       </div>
 
-      <div className="mt-8 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h2 className="text-base font-semibold text-slate-900">Quick start</h2>
-        <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm text-slate-600">
+      <div className="mt-8 rounded-2xl border border-line bg-surface p-6 shadow-card">
+        <h2 className="text-base font-semibold text-foreground">Quick start</h2>
+        <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm text-muted">
           <li>Create users under the Users tab (or let them sign in with Google).</li>
           <li>Group users together under Groups for easier assignment.</li>
           <li>Add a meeting link under Meets and assign it to users or groups.</li>

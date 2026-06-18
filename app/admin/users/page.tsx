@@ -14,22 +14,24 @@ export default async function UsersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-900">Users</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          Users
+        </h1>
+        <p className="mt-1 text-sm text-muted">
           Create accounts or manage existing ones.
         </p>
       </div>
 
-      <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h2 className="mb-4 text-base font-semibold text-slate-900">
+      <section className="rounded-2xl border border-line bg-surface p-6 shadow-card">
+        <h2 className="mb-4 text-base font-semibold text-foreground">
           Add a user
         </h2>
         <CreateUserForm />
       </section>
 
-      <section className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+      <section className="overflow-hidden rounded-2xl border border-line bg-surface shadow-card">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+          <thead className="border-b border-line bg-elevated text-xs uppercase tracking-wide text-muted">
             <tr>
               <th className="px-4 py-3">User</th>
               <th className="px-4 py-3">Login</th>
@@ -39,21 +41,21 @@ export default async function UsersPage() {
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-line">
             {users.map((u) => {
               const isSelf = u.id === session.user.id;
               return (
-                <tr key={u.id}>
+                <tr key={u.id} className="transition hover:bg-elevated/50">
                   <td className="px-4 py-3">
-                    <div className="font-medium text-slate-900">
+                    <div className="font-medium text-foreground">
                       {u.name ?? "—"}
                     </div>
-                    <div className="text-slate-500">{u.email}</div>
+                    <div className="text-muted">{u.email}</div>
                   </td>
-                  <td className="px-4 py-3 text-slate-500">
+                  <td className="px-4 py-3 text-muted">
                     {u.passwordHash ? "Password" : "Google only"}
                   </td>
-                  <td className="px-4 py-3 text-slate-500">
+                  <td className="px-4 py-3 text-muted">
                     {u._count.groupMembers}
                   </td>
                   <td className="px-4 py-3">
@@ -63,7 +65,7 @@ export default async function UsersPage() {
                         name="role"
                         defaultValue={u.role}
                         disabled={isSelf}
-                        className="rounded-md border border-slate-300 px-2 py-1 text-sm disabled:opacity-60"
+                        className="rounded-md border border-line bg-surface px-2 py-1 text-sm text-foreground outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:opacity-60"
                       >
                         <option value="USER">User</option>
                         <option value="ADMIN">Admin</option>
@@ -83,13 +85,13 @@ export default async function UsersPage() {
                   </td>
                   <td className="px-4 py-3 text-right">
                     {isSelf ? (
-                      <span className="text-xs text-slate-400">You</span>
+                      <span className="text-xs text-faint">You</span>
                     ) : (
                       <form action={deleteUser} className="inline">
                         <input type="hidden" name="id" value={u.id} />
                         <button
                           type="submit"
-                          className="text-xs font-medium text-red-600 hover:underline"
+                          className="text-xs font-medium text-danger hover:underline"
                         >
                           Delete
                         </button>

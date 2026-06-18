@@ -30,30 +30,30 @@ export function CreateMeetForm({
           type="text"
           required
           placeholder="Meeting title"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
         <input
           name="url"
           type="url"
           required
           placeholder="https://meet.google.com/abc-defg-hij"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
       </div>
       <input
         name="description"
         type="text"
         placeholder="Description (optional)"
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+        className="field"
       />
       <div>
-        <label className="mb-1 block text-xs font-medium text-slate-500">
+        <label className="mb-1 block text-xs font-medium text-muted">
           Date &amp; time (optional — leave blank for instant/recurring meets)
         </label>
         <input
           name="scheduledAt"
           type="datetime-local"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field max-w-xs"
         />
       </div>
 
@@ -92,24 +92,24 @@ function CheckboxList({
   empty: string;
 }) {
   return (
-    <fieldset className="rounded-lg border border-slate-200 p-3">
-      <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+    <fieldset className="rounded-lg border border-line p-3">
+      <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-muted">
         {legend}
       </legend>
       {options.length === 0 ? (
-        <p className="text-sm text-slate-400">{empty}</p>
+        <p className="text-sm text-faint">{empty}</p>
       ) : (
         <div className="max-h-40 space-y-1.5 overflow-y-auto">
           {options.map((o) => (
             <label
               key={o.id}
-              className="flex items-center gap-2 text-sm text-slate-700"
+              className="flex items-center gap-2 text-sm text-foreground"
             >
               <input
                 type="checkbox"
                 name={name}
                 value={o.id}
-                className="h-4 w-4 rounded border-slate-300 text-brand focus:ring-brand"
+                className="h-4 w-4 rounded border-line text-brand focus:ring-brand"
               />
               {o.label}
             </label>

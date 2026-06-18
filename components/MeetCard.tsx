@@ -11,13 +11,13 @@ type Meet = {
 export function MeetCard({ meet }: { meet: Meet }) {
   const when = formatSchedule(meet.scheduledAt);
   return (
-    <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+    <div className="group flex flex-col rounded-2xl border border-line bg-surface p-5 shadow-card transition duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-card-hover">
       <div className="mb-4 flex items-start gap-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand ring-1 ring-inset ring-brand/15">
           <MeetIcon />
         </div>
         <div className="min-w-0">
-          <h3 className="truncate text-base font-semibold text-slate-900">
+          <h3 className="truncate text-base font-semibold text-foreground">
             {meet.title}
           </h3>
           {when && (
@@ -27,7 +27,7 @@ export function MeetCard({ meet }: { meet: Meet }) {
             </p>
           )}
           {meet.description && (
-            <p className="mt-0.5 line-clamp-2 text-sm text-slate-500">
+            <p className="mt-0.5 line-clamp-2 text-sm text-muted">
               {meet.description}
             </p>
           )}
@@ -39,7 +39,7 @@ export function MeetCard({ meet }: { meet: Meet }) {
           href={meet.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-brand-fg shadow-sm transition hover:bg-brand-dark"
         >
           Join meeting
           <ArrowIcon />

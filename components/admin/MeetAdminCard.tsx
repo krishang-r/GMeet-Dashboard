@@ -45,7 +45,7 @@ export function MeetAdminCard({
   }, [state]);
 
   return (
-    <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+    <section className="rounded-2xl border border-line bg-surface p-6 shadow-card">
       {editing ? (
         <form action={action} className="space-y-3">
           <input type="hidden" name="id" value={meet.id} />
@@ -55,7 +55,7 @@ export function MeetAdminCard({
               defaultValue={meet.title}
               required
               placeholder="Title"
-              className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+              className="field"
             />
             <input
               name="url"
@@ -63,24 +63,24 @@ export function MeetAdminCard({
               defaultValue={meet.url}
               required
               placeholder="Meeting URL"
-              className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+              className="field"
             />
           </div>
           <input
             name="description"
             defaultValue={meet.description ?? ""}
             placeholder="Description (optional)"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+            className="field"
           />
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-500">
+            <label className="mb-1 block text-xs font-medium text-muted">
               Date &amp; time (optional)
             </label>
             <input
               name="scheduledAt"
               type="datetime-local"
               defaultValue={toDateTimeLocal(meet.scheduledAt)}
-              className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+              className="field max-w-xs"
             />
           </div>
           <div className="flex items-center gap-3">
@@ -88,7 +88,7 @@ export function MeetAdminCard({
             <button
               type="button"
               onClick={() => setEditing(false)}
-              className="text-sm font-medium text-slate-500 hover:underline"
+              className="text-sm font-medium text-muted transition hover:text-foreground"
             >
               Cancel
             </button>
@@ -99,14 +99,14 @@ export function MeetAdminCard({
         <>
           <div className="mb-3 flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h3 className="text-base font-semibold text-slate-900">
+              <h3 className="text-base font-semibold text-foreground">
                 {meet.title}
               </h3>
               {when && (
                 <p className="text-sm font-medium text-brand">{when}</p>
               )}
               {meet.description && (
-                <p className="text-sm text-slate-500">{meet.description}</p>
+                <p className="text-sm text-muted">{meet.description}</p>
               )}
               <a
                 href={meet.url}
@@ -128,7 +128,7 @@ export function MeetAdminCard({
                 <input type="hidden" name="id" value={meet.id} />
                 <button
                   type="submit"
-                  className="text-xs font-medium text-red-600 hover:underline"
+                  className="text-xs font-medium text-danger hover:underline"
                 >
                   Delete
                 </button>
@@ -138,14 +138,14 @@ export function MeetAdminCard({
 
           <div className="mb-3 flex flex-wrap gap-2">
             {meet.assignments.length === 0 && (
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-faint">
                 Not assigned to anyone yet.
               </span>
             )}
             {meet.assignments.map((a) => (
               <span
                 key={a.id}
-                className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700"
+                className="inline-flex items-center gap-1.5 rounded-full bg-elevated px-3 py-1 text-sm text-foreground"
               >
                 {a.group ? (
                   <span className="font-medium text-brand">
@@ -158,7 +158,7 @@ export function MeetAdminCard({
                   <input type="hidden" name="id" value={a.id} />
                   <button
                     type="submit"
-                    className="text-slate-400 hover:text-red-600"
+                    className="text-faint transition hover:text-danger"
                     aria-label="Remove assignment"
                   >
                     ×
@@ -174,7 +174,7 @@ export function MeetAdminCard({
               name="target"
               defaultValue=""
               required
-              className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+              className="field max-w-xs"
             >
               <option value="" disabled>
                 Assign to…
@@ -200,7 +200,7 @@ export function MeetAdminCard({
             </select>
             <button
               type="submit"
-              className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+              className="rounded-lg bg-brand px-3 py-2 text-sm font-semibold text-brand-fg shadow-sm transition hover:bg-brand-dark"
             >
               Assign
             </button>

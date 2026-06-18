@@ -15,15 +15,17 @@ export default async function DashboardPage() {
 
       <main className="mx-auto max-w-6xl px-4 py-8">
         <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-slate-900">My Meets</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            My Meets
+          </h1>
+          <p className="mt-1 text-sm text-muted">
             Meetings shared with you. Click a card to join in a new tab.
           </p>
         </div>
 
         {meets.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
-            <p className="text-sm text-slate-500">
+          <div className="rounded-2xl border border-dashed border-line bg-surface p-12 text-center">
+            <p className="text-sm text-muted">
               No meetings have been assigned to you yet.
             </p>
           </div>

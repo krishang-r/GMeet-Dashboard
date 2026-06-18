@@ -32,14 +32,16 @@ export default async function MeetsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-900">Meets</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          Meets
+        </h1>
+        <p className="mt-1 text-sm text-muted">
           Add a Google Meet link and choose who can see it.
         </p>
       </div>
 
-      <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h2 className="mb-4 text-base font-semibold text-slate-900">
+      <section className="rounded-2xl border border-line bg-surface p-6 shadow-card">
+        <h2 className="mb-4 text-base font-semibold text-foreground">
           Add a meet
         </h2>
         <CreateMeetForm users={userOptions} groups={groupOptions} />
@@ -47,7 +49,7 @@ export default async function MeetsPage() {
 
       <div className="space-y-4">
         {meets.length === 0 && (
-          <p className="text-sm text-slate-500">No meets yet.</p>
+          <p className="text-sm text-muted">No meets yet.</p>
         )}
         {meets.map((m) => (
           <MeetAdminCard

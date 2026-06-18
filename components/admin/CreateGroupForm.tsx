@@ -22,13 +22,13 @@ export function CreateGroupForm() {
           type="text"
           required
           placeholder="Group name"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
         <input
           name="description"
           type="text"
           placeholder="Description (optional)"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
       </div>
       <div className="flex items-center gap-3">
