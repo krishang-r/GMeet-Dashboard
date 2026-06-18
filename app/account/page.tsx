@@ -19,17 +19,19 @@ export default async function AccountPage() {
         isAdmin={session.user.role === "ADMIN"}
       />
       <main className="mx-auto max-w-6xl px-4 py-8">
-        <h1 className="text-2xl font-semibold text-slate-900">Account</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          Account
+        </h1>
+        <p className="mt-1 text-sm text-muted">
           {user?.email}
           {user?.name ? ` · ${user.name}` : ""}
         </p>
 
-        <section className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-          <h2 className="mb-1 text-base font-semibold text-slate-900">
+        <section className="mt-6 rounded-2xl border border-line bg-surface p-6 shadow-card">
+          <h2 className="mb-1 text-base font-semibold text-foreground">
             {user?.passwordHash ? "Change password" : "Set a password"}
           </h2>
-          <p className="mb-4 text-sm text-slate-500">
+          <p className="mb-4 text-sm text-muted">
             {user?.passwordHash
               ? "Update the password you use for email sign-in."
               : "Set a password to sign in with email as well as Google."}

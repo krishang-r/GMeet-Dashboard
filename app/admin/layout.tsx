@@ -21,13 +21,13 @@ export default async function AdminLayout({
   return (
     <div className="min-h-screen">
       <SiteHeader email={session.user.email} isAdmin active="admin" />
-      <div className="border-b border-slate-200 bg-white">
+      <div className="border-b border-line bg-surface">
         <nav className="mx-auto flex max-w-6xl gap-1 px-4">
           {tabs.map((t) => (
             <Link
               key={t.href}
               href={t.href}
-              className="border-b-2 border-transparent px-3 py-3 text-sm font-medium text-slate-600 hover:text-slate-900"
+              className="border-b-2 border-transparent px-3 py-3 text-sm font-medium text-muted transition hover:text-foreground"
             >
               {t.label}
             </Link>

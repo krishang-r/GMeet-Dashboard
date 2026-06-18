@@ -20,7 +20,7 @@ export function SetPasswordForm({ userId }: { userId: string }) {
         type="password"
         placeholder="New password"
         minLength={6}
-        className="w-32 rounded-md border border-slate-300 px-2 py-1 text-sm outline-none focus:border-brand"
+        className="w-32 rounded-md border border-line bg-surface px-2 py-1 text-sm text-foreground outline-none transition placeholder:text-faint focus:border-brand focus:ring-2 focus:ring-brand/20"
       />
       <button
         type="submit"
@@ -29,10 +29,10 @@ export function SetPasswordForm({ userId }: { userId: string }) {
         Set
       </button>
       {state?.error && (
-        <span className="text-xs text-red-600">{state.error}</span>
+        <span className="text-xs text-danger">{state.error}</span>
       )}
       {state?.success && (
-        <span className="text-xs text-green-600">Saved</span>
+        <span className="text-xs text-success">Saved</span>
       )}
     </form>
   );

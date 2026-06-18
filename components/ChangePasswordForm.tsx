@@ -17,19 +17,19 @@ export function ChangePasswordForm({ hasPassword }: { hasPassword: boolean }) {
     <form ref={formRef} action={action} className="max-w-sm space-y-3">
       {hasPassword && (
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">
+          <label className="mb-1 block text-sm font-medium text-foreground">
             Current password
           </label>
           <input
             name="currentPassword"
             type="password"
             required
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+            className="field"
           />
         </div>
       )}
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-foreground">
           New password
         </label>
         <input
@@ -37,11 +37,11 @@ export function ChangePasswordForm({ hasPassword }: { hasPassword: boolean }) {
           type="password"
           required
           minLength={6}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-slate-700">
+        <label className="mb-1 block text-sm font-medium text-foreground">
           Confirm new password
         </label>
         <input
@@ -49,14 +49,14 @@ export function ChangePasswordForm({ hasPassword }: { hasPassword: boolean }) {
           type="password"
           required
           minLength={6}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
       </div>
 
       <div className="flex items-center gap-3">
         <SubmitButton>{hasPassword ? "Change password" : "Set password"}</SubmitButton>
-        {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
-        {state?.success && <p className="text-sm text-green-600">{state.success}</p>}
+        {state?.error && <p className="text-sm text-danger">{state.error}</p>}
+        {state?.success && <p className="text-sm text-success">{state.success}</p>}
       </div>
     </form>
   );

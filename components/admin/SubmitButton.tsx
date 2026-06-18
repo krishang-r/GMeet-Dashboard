@@ -16,7 +16,7 @@ export function SubmitButton({
       disabled={pending}
       className={
         className ??
-        "rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:opacity-60"
+        "rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-brand-fg shadow-sm transition hover:bg-brand-dark disabled:opacity-60"
       }
     >
       {pending ? "Saving…" : children}

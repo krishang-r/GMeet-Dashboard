@@ -2,10 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   Design tokens. Channels are space-separated RGB so Tailwind's <alpha-value>
+   opacity modifiers (bg-brand/10, ring-brand/20, ...) keep working.
+   --------------------------------------------------------------------------- */
 :root {
   color-scheme: light;
+
+  --canvas: 247 248 250; /* #f7f8fa */
+  --surface: 255 255 255; /* #ffffff */
+  --elevated: 241 245 249; /* slate-100 */
+  --foreground: 15 23 42; /* slate-900 */
+  --muted: 100 116 139; /* slate-500 */
+  --faint: 148 163 184; /* slate-400 */
+  --line: 226 232 240; /* slate-200 */
+
+  --brand: 37 99 235; /* blue-600 */
+  --brand-dark: 29 78 216; /* blue-700 */
+  --brand-fg: 255 255 255;
+
+  --success: 22 163 74; /* green-600 */
+  --danger: 220 38 38; /* red-600 */
 }
 
-body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+.dark {
+  color-scheme: dark;
+
+  --canvas: 8 11 18; /* near-black navy */
+  --surface: 18 24 38; /* #121826 */
+  --elevated: 28 36 54; /* #1c2436 */
+  --foreground: 226 232 240; /* slate-200 */
+  --muted: 148 163 184; /* slate-400 */
+  --faint: 100 116 139; /* slate-500 */
+  --line: 39 49 67; /* #273043 */
+
+  --brand: 59 130 246; /* blue-500 — pops on dark */
+  --brand-dark: 37 99 235; /* blue-600 */
+  --brand-fg: 255 255 255;
+
+  --success: 34 197 94; /* green-500 */
+  --danger: 248 113 113; /* red-400 */
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-foreground antialiased;
+  }
+
+  /* Smoothly cross-fade when toggling themes (but not on every interaction). */
+  body,
+  .theme-transition,
+  .theme-transition * {
+    transition: background-color 0.2s ease, border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  ::selection {
+    @apply bg-brand/20;
+  }
+}
+
+@layer components {
+  /* Shared form control look — themed in both modes. */
+  .field {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm
+      text-foreground outline-none transition
+      placeholder:text-faint
+      focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+}
+
+/* Slim, theme-aware scrollbars. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--line)) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--line));
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }

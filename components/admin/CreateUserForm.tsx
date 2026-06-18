@@ -22,24 +22,24 @@ export function CreateUserForm() {
           type="email"
           required
           placeholder="Email"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
         <input
           name="name"
           type="text"
           placeholder="Name (optional)"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
         <input
           name="password"
           type="password"
           placeholder="Password (optional, for email login)"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         />
         <select
           name="role"
           defaultValue="USER"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          className="field"
         >
           <option value="USER">User</option>
           <option value="ADMIN">Admin</option>
@@ -49,7 +49,7 @@ export function CreateUserForm() {
         <SubmitButton>Add user</SubmitButton>
         <FormMessage state={state} />
       </div>
-      <p className="text-xs text-slate-400">
+      <p className="text-xs text-faint">
         Leave password blank for Google-only accounts.
       </p>
     </form>
